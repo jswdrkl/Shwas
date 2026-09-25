@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="mr" class="light">
+<html lang="mr" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>‘श्वास’ एक मितवा - मित्र, तत्वज्ञ आणि वाटाड्या</title>
-
-  <!-- Google Fonts: IBM Plex Sans & IBM Plex Sans Devanagari -->
+  <title>‘श्वास’ एक ‘मितवा’ : मित्र, तत्वज्ञ आणि वाटाड्या</title>
+  
+  <!-- IBM Plex Sans & IBM Plex Sans Devanagari Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Devanagari:wght@300;400;500;600;700&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-
-  <!-- Tailwind CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Devanagari:wght@300;400;500;600;700&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -19,6 +19,14 @@
         extend: {
           fontFamily: {
             sans: ['"IBM Plex Sans Devanagari"', '"IBM Plex Sans"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              teal: '#0ea5e9',
+              coral: '#f43f5e',
+              amber: '#f59e0b',
+              emerald: '#10b981',
+            }
           }
         }
       }
@@ -26,337 +34,347 @@
   </script>
 
   <style>
-    :root {
-      --bg-primary: #fcfbfa;
-      --card-bg: rgba(255, 255, 255, 0.95);
-      --card-border: #f0ede6;
-      --text-main: #242220;
-      --text-title: #141210;
-      --text-accent: #c25e2e;
-    }
-
-    .dark {
-      --bg-primary: #0d1117;
-      --card-bg: rgba(22, 27, 34, 0.92);
-      --card-border: #30363d;
-      --text-main: #d0d7de;
-      --text-title: #f0f6fc;
-      --text-accent: #f0883e;
-    }
-
     body {
       font-family: 'IBM Plex Sans Devanagari', 'IBM Plex Sans', sans-serif;
-      background-color: var(--bg-primary);
-      color: var(--text-main);
-      text-rendering: optimizeLegibility;
-      -webkit-font-smoothing: antialiased;
-      transition: background-color 0.4s ease, color 0.4s ease;
-    }
-
-    /* Paragraph justification without broken words */
-    .content-paragraph {
-      text-align: justify;
-      text-justify: inter-word;
-      hyphens: none;
-      -webkit-hyphens: none;
       word-break: keep-all;
       overflow-wrap: break-word;
-      line-height: 1.95;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    /* Custom smooth breathing animation for the hero SVG */
-    @keyframes deepBreathe {
+    /* Paragraph Justification without breaking Marathi words */
+    .essay-content p {
+      text-align: justify;
+      text-justify: inter-word;
+      word-break: keep-all;
+      hyphens: none;
+    }
+
+    /* Rhythmic Breath Animation */
+    @keyframes breathCycle {
       0%, 100% {
-        transform: scale(0.94);
-        opacity: 0.88;
+        transform: scale(0.92);
+        opacity: 0.85;
       }
       50% {
-        transform: scale(1.04);
+        transform: scale(1.08);
         opacity: 1;
       }
     }
 
-    @keyframes pulseWave {
+    @keyframes waveFlow {
       0% {
         stroke-dashoffset: 0;
-        opacity: 0.35;
-      }
-      50% {
-        opacity: 0.85;
       }
       100% {
-        stroke-dashoffset: 400;
-        opacity: 0.35;
+        stroke-dashoffset: 360;
       }
     }
 
-    @keyframes colorFlow {
+    @keyframes floatParticle {
       0%, 100% {
-        stop-color: #06b6d4;
+        transform: translateY(0px) scale(0.95);
       }
-      33% {
-        stop-color: #3b82f6;
-      }
-      66% {
-        stop-color: #10b981;
+      50% {
+        transform: translateY(-8px) scale(1.05);
       }
     }
 
-    .breath-core {
+    .animate-breath {
+      animation: breathCycle 6s ease-in-out infinite;
       transform-origin: center center;
-      animation: deepBreathe 5.8s ease-in-out infinite;
     }
 
-    .breath-wave-1 {
-      stroke-dasharray: 20 10;
-      animation: pulseWave 14s linear infinite;
+    .animate-wave {
+      stroke-dasharray: 20, 10;
+      animation: waveFlow 25s linear infinite;
     }
 
-    .breath-wave-2 {
-      stroke-dasharray: 15 8;
-      animation: pulseWave 10s linear infinite reverse;
+    .animate-float {
+      animation: floatParticle 4s ease-in-out infinite;
     }
   </style>
 </head>
-<body class="min-h-screen py-6 sm:py-10 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center relative selection:bg-amber-500 selection:text-white">
+<body class="bg-stone-50 text-stone-800 dark:bg-stone-950 dark:text-stone-200 transition-colors duration-300 min-h-screen flex flex-col items-center">
 
-  <aside class="fixed top-4 right-4 sm:top-6 sm:right-6 z-50 flex items-center gap-2">
-    <!-- Theme Toggle Button -->
-    <button id="themeToggle" type="button" aria-label="Toggle Theme" class="p-2.5 rounded-full bg-white/90 dark:bg-slate-800/90 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 shadow-md backdrop-blur-md hover:bg-slate-100 dark:hover:bg-slate-700 transition-all duration-300 focus:outline-none active:scale-95">
-      <!-- Sun Icon (Light Mode) -->
-      <svg id="sunIcon" class="w-5 h-5 hidden dark:block text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-      </svg>
-      <!-- Moon Icon (Dark Mode) -->
-      <svg id="moonIcon" class="w-5 h-5 block dark:hidden text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-      </svg>
-    </button>
+  <header class="w-full sticky top-0 z-40 backdrop-blur-md bg-stone-50/80 dark:bg-stone-950/80 border-b border-stone-200/80 dark:border-stone-800/80 transition-colors duration-300">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span class="text-sm font-medium tracking-wide text-stone-600 dark:text-stone-400">‘श्वास’ एक ‘मितवा’</span>
+      </div>
 
-    <!-- Share Button -->
-    <button id="shareButton" type="button" aria-label="Share Content" class="p-2.5 rounded-full bg-white/90 dark:bg-slate-800/90 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 shadow-md backdrop-blur-md hover:bg-slate-100 dark:hover:bg-slate-700 transition-all duration-300 focus:outline-none active:scale-95">
-      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
-      </svg>
-    </button>
-  </aside>
+      <!-- Action buttons -->
+      <div class="flex items-center gap-2">
+        <!-- Share button -->
+        <button id="shareBtn" type="button" aria-label="शेअर करा" class="p-2 rounded-xl text-stone-600 dark:text-stone-300 hover:bg-stone-200/70 dark:hover:bg-stone-800/70 active:scale-95 transition-all">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z"/>
+          </svg>
+        </button>
 
-  <!-- Notification Toast -->
-  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-16 opacity-0 transition-all duration-300 pointer-events-none px-4 py-2.5 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 shadow-xl text-sm font-medium">
-    लिंक कॉपी झाली!
-  </div>
+        <!-- Theme Toggle button -->
+        <button id="themeToggle" type="button" aria-label="थीम बदला" class="p-2 rounded-xl text-stone-600 dark:text-stone-300 hover:bg-stone-200/70 dark:hover:bg-stone-800/70 active:scale-95 transition-all">
+          <!-- Sun Icon (for dark mode) -->
+          <svg id="sunIcon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+          </svg>
+          <!-- Moon Icon (for light mode) -->
+          <svg id="moonIcon" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
 
-  <main class="w-full max-w-3xl rounded-3xl p-6 sm:p-10 md:p-14 shadow-2xl transition-all duration-500" style="background-color: var(--card-bg); border: 1px solid var(--card-border);">
+  <main class="w-full max-w-3xl px-5 sm:px-8 py-8 md:py-12 flex-1">
     
-    <!-- Animated Colorful Prana / Breath SVG Illustration -->
-    <div class="w-full flex justify-center mb-10 overflow-hidden select-none">
-      <svg class="w-full max-w-[420px] h-auto drop-shadow-lg" viewBox="0 0 500 320" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="lungLeftGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#06b6d4" />
-            <stop offset="50%" stop-color="#3b82f6" />
-            <stop offset="100%" stop-color="#8b5cf6" />
-          </linearGradient>
-          <linearGradient id="lungRightGrad" x1="100%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#f59e0b" />
-            <stop offset="50%" stop-color="#f43f5e" />
-            <stop offset="100%" stop-color="#a855f7" />
-          </linearGradient>
-          <radialGradient id="heartCenter" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#fbbf24" stop-opacity="0.9" />
-            <stop offset="40%" stop-color="#f97316" stop-opacity="0.6" />
-            <stop offset="100%" stop-color="#ec4899" stop-opacity="0" />
-          </radialGradient>
-          <linearGradient id="flowGrad" x1="0%" y1="100%" x2="0%" y2="0%">
-            <stop offset="0%" stop-color="#10b981" />
-            <stop offset="50%" stop-color="#06b6d4" />
-            <stop offset="100%" stop-color="#ec4899" />
-          </linearGradient>
-        </defs>
+    <!-- Animated Light Colorful SVG Graphic symbolizing the rhythm of breath -->
+    <div class="flex justify-center mb-8">
+      <div class="relative w-48 h-48 sm:w-60 sm:h-60 flex items-center justify-center">
+        <!-- Ambient radial glow behind SVG -->
+        <div class="absolute inset-0 bg-gradient-to-tr from-teal-400/20 via-sky-300/20 to-amber-300/20 dark:from-teal-600/20 dark:via-sky-500/15 dark:to-amber-500/15 rounded-full blur-2xl animate-pulse"></div>
 
-        <!-- Ambient Radiance Aura -->
-        <circle cx="250" cy="165" r="130" fill="url(#heartCenter)" class="breath-core" opacity="0.45" />
+        <svg viewBox="0 0 300 300" class="w-full h-full relative drop-shadow-sm select-none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="gradAirLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.9" />
+              <stop offset="50%" stop-color="#3b82f6" stop-opacity="0.8" />
+              <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.85" />
+            </linearGradient>
+            
+            <linearGradient id="gradAirRight" x1="100%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#10b981" stop-opacity="0.9" />
+              <stop offset="50%" stop-color="#06b6d4" stop-opacity="0.8" />
+              <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.85" />
+            </linearGradient>
 
-        <!-- Animated Rhythmic Breath Pathways (Lungs & Flow of Prana) -->
-        <g class="breath-core">
-          <!-- Left Lung Wing (Inhale/Exhale harmony) -->
-          <path d="M 235 90 C 190 70, 110 110, 120 180 C 128 230, 180 255, 230 220 Z" 
-                fill="url(#lungLeftGrad)" 
-                opacity="0.75" />
-          <!-- Right Lung Wing (Inhale/Exhale harmony) -->
-          <path d="M 265 90 C 310 70, 390 110, 380 180 C 372 230, 320 255, 270 220 Z" 
-                fill="url(#lungRightGrad)" 
-                opacity="0.75" />
+            <linearGradient id="coreAura" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#f43f5e" stop-opacity="0.75" />
+              <stop offset="50%" stop-color="#fb923c" stop-opacity="0.8" />
+              <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.85" />
+            </linearGradient>
 
-          <!-- Center Airway / Trachea Flow of Life -->
-          <path d="M 250 40 L 250 145 M 250 145 Q 210 160 175 190 M 250 145 Q 290 160 325 190" 
-                stroke="url(#flowGrad)" 
-                stroke-width="5" 
-                stroke-linecap="round" 
-                fill="none" />
+            <filter id="gentleGlow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="4" result="blur" />
+              <feComposite in="SourceGraphic" in2="blur" operator="over" />
+            </filter>
+          </defs>
 
-          <!-- Delicate Inner Prana Tree Branches -->
-          <path d="M 210 170 Q 180 150 160 160 M 215 195 Q 185 210 165 200 M 290 170 Q 320 150 340 160 M 285 195 Q 315 210 335 200" 
-                stroke="#ffffff" 
-                stroke-opacity="0.65" 
-                stroke-width="2.5" 
-                stroke-linecap="round" 
-                fill="none" />
-        </g>
+          <!-- Outer Harmonious Wave Rings -->
+          <circle cx="150" cy="150" r="130" fill="none" stroke="#38bdf8" stroke-width="1.2" stroke-opacity="0.3" stroke-dasharray="6,8" class="animate-wave" />
+          <circle cx="150" cy="150" r="114" fill="none" stroke="#10b981" stroke-width="1.4" stroke-opacity="0.35" stroke-dasharray="4,6" class="animate-wave" style="animation-direction: reverse; animation-duration: 35s;" />
 
-        <!-- Dynamic Respiration Flow Streamlines -->
-        <path d="M 50 160 Q 150 120, 250 160 T 450 160" 
-              stroke="#38bdf8" 
-              stroke-width="2.5" 
-              fill="none" 
-              class="breath-wave-1" />
-        <path d="M 60 175 Q 155 215, 250 175 T 440 175" 
-              stroke="#fb923c" 
-              stroke-width="2" 
-              fill="none" 
-              class="breath-wave-2" />
+          <!-- Center Breathing Core Group (Expands & Contracts like Pranayama) -->
+          <g class="animate-breath">
+            <!-- Left organic wing/lung petal representing prana/inhalation -->
+            <path d="M150,150 C125,100 80,105 75,145 C70,185 110,215 150,225 C150,225 125,190 130,165 C135,140 150,150 150,150 Z" 
+                  fill="url(#gradAirLeft)" 
+                  filter="url(#gentleGlow)"
+                  opacity="0.85" />
 
-        <!-- Floating Life Sparkles -->
-        <circle cx="210" cy="115" r="3.5" fill="#a7f3d0" class="breath-core" />
-        <circle cx="290" cy="115" r="3.5" fill="#fed7aa" class="breath-core" />
-        <circle cx="160" cy="215" r="3" fill="#bae6fd" class="breath-core" />
-        <circle cx="340" cy="215" r="3" fill="#fbcfe8" class="breath-core" />
-      </svg>
+            <!-- Right organic wing/lung petal representing exhalation/release -->
+            <path d="M150,150 C175,100 220,105 225,145 C230,185 190,215 150,225 C150,225 175,190 170,165 C165,140 150,150 150,150 Z" 
+                  fill="url(#gradAirRight)" 
+                  filter="url(#gentleGlow)"
+                  opacity="0.85" />
+
+            <!-- Ascending flow loops (Wind ribbon meeting in heart center) -->
+            <path d="M150,75 C120,110 135,160 150,180 C165,160 180,110 150,75 Z" 
+                  fill="url(#coreAura)" 
+                  opacity="0.8" />
+
+            <!-- Center vital spark -->
+            <circle cx="150" cy="150" r="14" fill="#ffffff" fill-opacity="0.9" filter="url(#gentleGlow)" />
+            <circle cx="150" cy="150" r="7" fill="#0284c7" />
+          </g>
+
+          <!-- Floating subtle prana air droplets -->
+          <g class="animate-float">
+            <circle cx="100" cy="90" r="4.5" fill="#38bdf8" opacity="0.75" />
+            <circle cx="200" cy="90" r="4" fill="#34d399" opacity="0.75" />
+            <circle cx="150" cy="55" r="5" fill="#fbbf24" opacity="0.8" />
+            <circle cx="85" cy="195" r="3.5" fill="#818cf8" opacity="0.65" />
+            <circle cx="215" cy="195" r="3.5" fill="#f472b6" opacity="0.65" />
+          </g>
+        </svg>
+      </div>
     </div>
 
-    <article class="space-y-6 sm:space-y-7">
-      <!-- Title -->
-      <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-center mb-8" style="color: var(--text-title); line-height: 1.4;">
-        ‘श्वास’ एक मितवा - मित्र, तत्वज्ञ आणि वाटाड्या
-      </h1>
+    <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center tracking-normal text-stone-900 dark:text-stone-50 leading-snug sm:leading-tight mb-8">
+      ‘श्वास’ एक ‘मितवा’ : मित्र, तत्वज्ञ आणि वाटाड्या
+    </h1>
 
-      <p class="content-paragraph text-base sm:text-lg">
+    <article class="essay-content text-stone-700 dark:text-stone-300 text-lg sm:text-xl leading-relaxed sm:leading-loose space-y-6">
+      
+      <p>
         श्वास प्रत्येकाचा जन्मभराचा 'मैत्र' आहे. पहिल्या “ट्यां” पासून तो आयुष्यभर बरोबरच असतो.
       </p>
 
-      <p class="content-paragraph text-base sm:text-lg">
+      <p>
         प्रत्येक माणसाचे जगातील इतर व्यक्तीबरोबर एक नाते असते. काही नाती रक्ताची असतात; काही जवळची असतात तर काही दूरची. पण आपल्या या सगळ्या नातेसंबंधात खरे दृढ नाते असते ते म्हणजे ‘मैत्री’चे! दोन व्यक्तींमध्ये मैत्री का होते; एखाद्याची आणि आपली ‘वेव्हलेन्ग्थ’ का ‘फाइन ट्यून’ होते हे सांगणे शब्दातीत आहे. ती एक ‘अनुभूती’ आहे.
       </p>
 
-      <p class="content-paragraph text-base sm:text-lg">
+      <p>
         ‘मैत्री’त महत्त्वाचा असतो विश्वास. एकमेकांविषयी मनातून वाटणारी ओढ. त्यात स्त्री-पुरुष भेद नसतो, वयाचा अडथळा नसतो. हे एक असे नाते आहे ज्यात आपण ज्या गोष्टी आपल्या घरातील लोकांना सांगू शकत नाही त्या एकमेकांशी सहजपणे शेअर करू शकतो. खुल्या दिलाने एकमेकांची उणी-दुणी काढू शकतो. मन मोकळे करू शकतो.
       </p>
 
-      <p class="content-paragraph text-base sm:text-lg">
+      <p>
         प्रत्यक्षात जवळ नसला तरी आपला ‘मैत्र’ आपल्या मनाच्या एका कोपऱ्यात सतत निवास करत असतो. कोणताही प्रसंग असू दे, आपल्या एका हाकेसरशी तो आपल्या खांद्याला खांदा द्यायला तक्षणी हजर होणार याबद्दल आपल्याला खात्री असते. खरा ‘मैत्र’ प्रसंगी चार कठोर शब्द ऐकवण्याची, पाय रोवून उभे राहून वाट अडवण्याची ताकद बाळगून असतो आणि ते स्वीकारण्याशिवाय आणि त्याला शरण जाण्याशिवाय त्याच्या ‘मित्रा’ला दुसरा पर्याय नसतो.
       </p>
 
-      <p class="content-paragraph text-base sm:text-lg">
-        हे सर्व खरे असले, आपण अनुभवलेले असले, मैत्री अगदी ‘जीवश्च-कंठश्च’ असली तरी शेवटी प्रत्येक ‘मैत्र’ ही एक व्यक्ती असते. तिला तिचे स्वतंत्र अस्तित्व व भावना असतात आणि म्हणून कोणत्याही ‘प्रत्यक्ष मैत्री’ला एक <em>expiry date</em> असणे स्वाभाविक आहे. म्हणजे आपल्यातला प्रत्येकजण ज्याच्या त्याच्या आयुष्यात एकटा असतो.
+      <p>
+        हे सर्व खरे असले, आपण अनुभवलेले असले, मैत्री अगदी ‘जीवश्च-कंठश्च’ असली तरी शेवटी प्रत्येक ‘मैत्र’ ही एक व्यक्ती असते. तिला तिचे स्वतंत्र अस्तित्व व भावना असतात आणि म्हणून कोणत्याही ‘प्रत्यक्ष मैत्री’ला एक expiry date असणे स्वाभाविक आहे. म्हणजे आपल्यातला प्रत्येकजण ज्याच्या त्याच्या आयुष्यात एकटा असतो.
       </p>
 
-      <!-- Asterisk Separator 1 -->
-      <div class="text-center tracking-widest text-lg font-bold opacity-60 select-none py-1" style="color: var(--text-accent);">
-        **
+      <div class="text-center text-stone-400 dark:text-stone-500 tracking-widest text-lg select-none py-1">
+        ⧫⧫⧫
       </div>
 
-      <p class="content-paragraph text-base sm:text-lg font-medium">
+      <div class="text-center font-medium text-stone-800 dark:text-stone-200 text-lg sm:text-xl px-2 py-1 leading-relaxed">
         मग आपल्याला अखेरपर्यन्त साथ देईल असा मित्र मिळू शकतो का? का शेवटी एकटेपणाच नशीबी आहे?
-      </p>
-
-      <!-- Asterisk Separator 2 -->
-      <div class="text-center tracking-widest text-lg font-bold opacity-60 select-none py-1" style="color: var(--text-accent);">
-        **
       </div>
 
-      <p class="content-paragraph text-base sm:text-lg">
-        आहे! आपल्या प्रत्येकाला आयुष्याच्या अखेरपर्यंत साथ देईल असा एक अत्यंत विश्वासू ‘मैत्र’ आहे. खरेतर तो सतत आपल्या प्रत्येकाच्या बरोबरच आहे. आपल्याला जाणीव नसली तरी तो आपल्याशी निरपेक्ष मैत्री ठेऊन आहे, आणि जाणीवपूर्वक प्रयत्न केले तर तो आपला <strong>“मितवा” - मित्र, तत्वज्ञ आणि वाटाड्या</strong> होऊ शकतो. रक्ताचे नाते आहे त्याचे आणि आपले; आपल्या प्रत्येकाचे. तो म्हणजे आपल्या प्रत्येकाचा “श्वास”!!
+      <div class="text-center text-stone-400 dark:text-stone-500 tracking-widest text-lg select-none py-1">
+        ⧫⧫⧫
+      </div>
+
+      <p>
+        आहे! आपल्या प्रत्येकाला आयुष्याच्या अखेरपर्यंत साथ देईल असा एक अत्यंत विश्वासू ‘मैत्र’ आहे. खरेतर तो सतत आपल्या प्रत्येकाच्या बरोबरच आहे. आपल्याला जाणीव नसली तरी तो आपल्याशी निरपेक्ष मैत्री ठेऊन आहे, आणि जाणीवपूर्वक प्रयत्न केले तर तो आपला <strong class="font-semibold text-stone-900 dark:text-stone-100">“मितवा” : मित्र, तत्वज्ञ आणि वाटाड्या</strong> होऊ शकतो. रक्ताचे नाते आहे त्याचे आणि आपले; आपल्या प्रत्येकाचे. तो म्हणजे आपल्या प्रत्येकाचा <strong class="font-semibold text-stone-900 dark:text-stone-100">“श्वास”!!</strong>
       </p>
 
-      <p class="content-paragraph text-base sm:text-lg">
-        श्वास आपला जन्मभराचा स्नेही आहे. पहिल्या “ट्यां” पासून तो आयुष्यभर बरोबरच असतो. प्रत्येकाचा तो एक कायमस्वरूपी ‘समवयस्क’ दोस्त असतो. आत्मचिंतन करताना तो सहजपणे आपल्या विचारांशी समरस होऊ शकतो. व्यायाम करताना, श्रमाची कामे करताना, अगदी विचार करताना देखील आपोआप स्वतःची गती कमी-अधिक करून तो आपल्याला पुरेसा प्राणवायू मिळेल हे पहातो. पण जर आपण ‘अति’ करू लागलो तर ‘धाप’ लागते म्हणजेच ‘श्वासा’त आपल्याला शब्दावाचून ‘आता पुरे’ असे सांगण्याची धमक असते; आणि तसे झाले की या ‘जिगरी दोस्ता’समोर शरणागती पत्करून आपल्याला गप्प बसण्यावाचून, विश्रांती घेण्याशिवाय गत्यंतर नसते.
+      <p>
+        श्वास आपल्या प्रत्येकाचा जन्मभराचा स्नेही आहे. पहिल्या “ट्यां” पासून तो आयुष्यभर बरोबरच असतो. प्रत्येकाचा तो एक कायमस्वरूपी ‘समवयस्क’ दोस्त असतो. आत्मचिंतन करताना तो सहजपणे आपल्या विचारांशी समरस होऊ शकतो. व्यायाम करताना, श्रमाची कामे करताना, अगदी विचार करताना देखील आपोआप स्वतःची गती कमी-अधिक करून तो आपल्याला पुरेसा प्राणवायू मिळेल हे पहातो. पण जर आपण ‘अति’ करू लागलो तर ‘धाप’ लागते म्हणजेच ‘श्वासा’त आपल्याला शब्दावाचून ‘आता पुरे’ असे सांगण्याची धमक असते; आणि तसे झाले की या ‘जिगरी दोस्ता’समोर शरणागती पत्करून आपल्याला गप्प बसण्यावाचून, विश्रांती घेण्याशिवाय गत्यंतर नसते.
       </p>
 
-      <p class="content-paragraph text-base sm:text-lg">
+      <p>
         एखादी चिंता सतावत असली, गहन किंवा सोप्या प्रश्नाचे उत्तर शोधायचे असले, कठीण किंवा साध्याशा प्रसंगातून मार्ग काढायचा असला तर त्यावेळी जाणीवपूर्वक ‘श्वास बघितला’ म्हणजे ‘श्वास’मित्रास बरोबर घेतले तर विचारात सुसूत्रता येते; उत्तराचा ‘युरेका’ क्षण गवसतो आणि त्यानंतर वाढणारा आत्मविश्वास आणि येणारा ‘निश्वास’ आपल्याला ‘आल इज वेल’ची खात्रीही देतो.
       </p>
 
-      <p class="content-paragraph text-base sm:text-lg">
+      <p>
         असा हा श्वास आपल्या प्रत्येकाचा खराखुरा आयुष्यभराचा ‘मितवा’ आहे. ज्याचा त्याचा एकमेवद्वितीय, खात्रीचा आणि जीवश्च-कंठश्च. जीव असेल तर कंठी श्वास आहे आणि कंठी श्वास असेल तरच जीव!
       </p>
 
-      <p class="content-paragraph text-base sm:text-lg font-medium">
+      <p>
         ‘श्वास’ मैत्री राखून आहेच. प्रश्न आहे आपण विश्वासपूर्वक ती मैत्री जोपासून दृढ करण्याचा. श्वास बघण्याचा!!
       </p>
 
-      <!-- Author Signature -->
-      <p class="text-right italic font-medium pt-4 text-base sm:text-lg opacity-80" style="color: var(--text-accent);">
-        ~जयदीप @ २०२४१०१७
-      </p>
+      <div class="text-center text-stone-400 dark:text-stone-500 tracking-widest text-lg select-none py-1">
+        ⧫⧫⧫
+      </div>
+
+      <div class="text-center pt-2 space-y-4">
+        <p class="text-center font-medium text-stone-800 dark:text-stone-200">
+          या निबंधावरून एआयच्या मदतीने केलेला पॉडकास्ट ऐकण्यासाठी
+        </p>
+
+        <!-- Podcast Link Button Card -->
+        <div class="inline-flex justify-center">
+          <a href="https://on.soundcloud.com/Ez5yG7mOsW7GkXwrVa" 
+             target="_blank" 
+             rel="noopener noreferrer"
+             class="group inline-flex items-center gap-3 px-5 py-3 rounded-2xl bg-gradient-to-r from-orange-500 to-amber-500 text-white font-medium shadow-md shadow-orange-500/20 hover:shadow-lg hover:shadow-orange-500/30 hover:scale-[1.02] active:scale-[0.98] transition-all">
+            <svg class="w-6 h-6 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
+            </svg>
+            <span class="tracking-wide">पॉडकास्ट ऐका (SoundCloud)</span>
+            <svg class="w-4 h-4 opacity-80 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </a>
+        </div>
+
+        <div class="text-center text-stone-600 dark:text-stone-400 font-medium pt-3">
+          जयदीप @ २०२४१०१७
+        </div>
+
+        <div class="text-center text-stone-400 dark:text-stone-500 tracking-widest text-lg select-none pb-4">
+          ⛯⛯⛯
+        </div>
+      </div>
+
     </article>
   </main>
 
+  <div id="toast" class="fixed bottom-6 z-50 transform translate-y-20 opacity-0 pointer-events-none transition-all duration-300 ease-out px-4 py-2.5 rounded-xl bg-stone-900/90 text-stone-100 dark:bg-stone-100/90 dark:text-stone-900 backdrop-blur-md shadow-lg text-sm font-medium flex items-center gap-2">
+    <svg class="w-4 h-4 text-emerald-400 dark:text-emerald-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+    </svg>
+    <span id="toastMsg">लिंक कॉपी झाली!</span>
+  </div>
+
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // Theme switching logic
-      const html = document.documentElement;
-      const themeToggle = document.getElementById('themeToggle');
+    (function () {
+      const themeToggleBtn = document.getElementById('themeToggle');
+      const sunIcon = document.getElementById('sunIcon');
+      const moonIcon = document.getElementById('moonIcon');
+      const shareBtn = document.getElementById('shareBtn');
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toastMsg');
+      let toastTimer = null;
 
-      // Detect saved or system theme
-      const savedTheme = localStorage.getItem('user-theme');
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-      if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-        html.classList.add('dark');
-        html.classList.remove('light');
-      } else {
-        html.classList.add('light');
-        html.classList.remove('dark');
+      // Theme Management
+      function applyTheme(isDark) {
+        if (isDark) {
+          document.documentElement.classList.add('dark');
+          sunIcon.classList.remove('hidden');
+          moonIcon.classList.add('hidden');
+          localStorage.setItem('shwas_theme', 'dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+          sunIcon.classList.add('hidden');
+          moonIcon.classList.remove('hidden');
+          localStorage.setItem('shwas_theme', 'light');
+        }
       }
 
-      themeToggle.addEventListener('click', () => {
-        if (html.classList.contains('dark')) {
-          html.classList.remove('dark');
-          html.classList.add('light');
-          localStorage.setItem('user-theme', 'light');
-        } else {
-          html.classList.remove('light');
-          html.classList.add('dark');
-          localStorage.setItem('user-theme', 'dark');
-        }
+      // Initial Theme Check
+      const savedTheme = localStorage.getItem('shwas_theme');
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      applyTheme(savedTheme ? savedTheme === 'dark' : systemPrefersDark);
+
+      themeToggleBtn.addEventListener('click', () => {
+        const isCurrentlyDark = document.documentElement.classList.contains('dark');
+        applyTheme(!isCurrentlyDark);
       });
 
-      // Share button and clipboard fallback
-      const shareButton = document.getElementById('shareButton');
-      const toast = document.getElementById('toast');
-
-      const showToast = (message = 'लिंक कॉपी झाली!') => {
-        toast.textContent = message;
-        toast.classList.remove('translate-y-16', 'opacity-0');
+      // Toast feedback helper
+      function showToast(message) {
+        if (toastTimer) clearTimeout(toastTimer);
+        toastMsg.textContent = message;
+        toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
         toast.classList.add('translate-y-0', 'opacity-100');
-        setTimeout(() => {
-          toast.classList.add('translate-y-16', 'opacity-0');
+        
+        toastTimer = setTimeout(() => {
           toast.classList.remove('translate-y-0', 'opacity-100');
-        }, 2600);
-      };
+          toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+        }, 3000);
+      }
 
-      const copyToClipboard = (text) => {
-        const tempInput = document.createElement('textarea');
-        tempInput.value = text;
+      // Fallback copy using execCommand
+      function copyToClipboard(text) {
+        const tempInput = document.createElement('input');
         tempInput.style.position = 'fixed';
         tempInput.style.left = '-9999px';
+        tempInput.value = text;
         document.body.appendChild(tempInput);
-        tempInput.focus();
         tempInput.select();
         try {
           document.execCommand('copy');
-          showToast('लिंक कॉपी झाली!');
-        } catch (e) {
-          showToast('कृपया URL कॉपी करा');
+          showToast('लिंक क्लिपबोर्डवर कॉपी झाली!');
+        } catch (err) {
+          showToast('कृपया लिंक हाताने कॉपी करा');
         }
         document.body.removeChild(tempInput);
-      };
+      }
 
-      shareButton.addEventListener('click', async () => {
+      // Share Action
+      shareBtn.addEventListener('click', async () => {
         const shareData = {
-          title: '‘श्वास’ एक मितवा - मित्र, तत्वज्ञ आणि वाटाड्या',
-          text: 'श्वास प्रत्येकाचा जन्मभराचा \'मैत्र\' आहे. पहिल्या “ट्यां” पासून तो आयुष्यभर बरोबरच असतो.',
-          url: window.location.href
+          title: "‘श्वास’ एक ‘मितवा’ : मित्र, तत्वज्ञ आणि वाटाड्या",
+          text: "‘श्वास’ एक ‘मितवा’ : मित्र, तत्वज्ञ आणि वाटाड्या - एक सुंदर चिंतन",
+          url: window.location.href,
         };
 
         if (navigator.share) {
@@ -371,7 +389,7 @@
           copyToClipboard(window.location.href);
         }
       });
-    });
+    })();
   </script>
 </body>
 </html>
