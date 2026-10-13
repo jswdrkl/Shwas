@@ -2,7 +2,7 @@
 <html lang="mr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>‘श्वास’ एक ‘मितवा’ - मित्र, तत्वज्ञ आणि वाटाड्या</title>
   
   <!-- IBM Plex Sans Devanagari, IBM Plex Sans आणि Ubuntu Fonts -->
@@ -62,7 +62,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 24px 16px 48px;
+      padding: 24px 16px;
+      padding-bottom: calc(48px + env(safe-area-inset-bottom, 0px));
       word-break: keep-all;
       overflow-wrap: break-word;
       -webkit-font-smoothing: antialiased;
@@ -73,7 +74,7 @@
       max-width: 760px;
       background-color: var(--bg-surface);
       border-radius: 20px;
-      padding: 36px 32px;
+      padding: 36px 32px 30px;
       box-shadow: var(--shadow-sm);
       border: 1px solid var(--border-color);
       transition: background-color 0.3s ease, border-color 0.3s ease;
@@ -83,11 +84,12 @@
     @media (max-width: 640px) {
       body {
         font-size: 1.175rem;
-        padding: 12px 10px 36px;
+        padding: 14px 12px;
+        padding-bottom: calc(56px + env(safe-area-inset-bottom, 0px));
       }
       .container {
-        padding: 24px 20px;
-        border-radius: 14px;
+        padding: 24px 16px 24px;
+        border-radius: 16px;
       }
     }
 
@@ -101,8 +103,8 @@
       background: var(--card-bg);
       border: 1px solid var(--border-color);
       border-radius: 50%;
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -180,7 +182,7 @@
       transform-origin: center;
     }
 
-    /* Title Styling */
+    /* Title Block */
     .title-block {
       text-align: center;
       margin-bottom: 28px;
@@ -211,14 +213,14 @@
 
     @media (max-width: 640px) {
       .main-title {
-        font-size: 1.5rem;
+        font-size: 1.55rem;
       }
       .sub-title {
-        font-size: 1.08rem;
+        font-size: 1.1rem;
       }
     }
 
-    /* Content Body Typography */
+    /* Content Typography */
     .content-body p {
       text-align: justify;
       margin-bottom: 1.35rem;
@@ -321,62 +323,83 @@
 
     /* Bottom Share Button */
     .bottom-bar {
-      margin-top: 36px;
-      padding-top: 24px;
+      margin-top: 40px;
+      padding: 24px 0 8px;
       border-top: 1px solid var(--border-color);
       display: flex;
       justify-content: center;
+      align-items: center;
+      width: 100%;
     }
 
     .share-btn {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      justify-content: center;
+      gap: 12px;
       background-color: var(--btn-bg);
       color: var(--btn-text);
-      border: none;
+      border: 1px solid transparent;
       border-radius: 9999px;
-      padding: 13px 30px;
+      padding: 14px 34px;
       font-family: inherit;
-      font-size: 1.05rem;
+      font-size: 1.1rem;
       font-weight: normal;
       cursor: pointer;
-      transition: all 0.2s ease;
-      box-shadow: var(--shadow-sm);
+      min-width: 200px;
+      min-height: 50px;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+      transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
     }
 
     .share-btn:hover {
-      opacity: 0.92;
+      opacity: 0.94;
       transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
     }
 
     .share-btn:active {
       transform: translateY(0);
+      opacity: 0.85;
     }
 
     .share-btn svg {
-      width: 18px;
-      height: 18px;
+      width: 20px;
+      height: 20px;
       stroke: currentColor;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 640px) {
+      .bottom-bar {
+        margin-top: 32px;
+        padding: 20px 0 6px;
+      }
+      .share-btn {
+        width: 100%;
+        max-width: 280px;
+        padding: 14px 20px;
+      }
     }
 
     /* Toast Notification */
     .toast {
       position: fixed;
-      bottom: 24px;
+      bottom: calc(24px + env(safe-area-inset-bottom, 0px));
       left: 50%;
       transform: translateX(-50%) translateY(100px);
       background: #1e293b;
       color: #f8fafc;
-      padding: 10px 20px;
+      padding: 12px 24px;
       border-radius: 30px;
       font-size: 0.95rem;
       opacity: 0;
       pointer-events: none;
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       z-index: 1000;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
     }
 
     .toast.show {
@@ -452,7 +475,7 @@
       <h2 class="sub-title">मित्र, तत्वज्ञ आणि वाटाड्या</h2>
     </header>
 
-    <!-- Essay Body (सर्व Bold फॉरमॅटिंग काढून टाकले आहे) -->
+    <!-- Content Body -->
     <article class="content-body">
       <p>श्वास प्रत्येकाचा जन्मभराचा 'मैत्र' आहे. पहिल्या “ट्यां” पासून तो आयुष्यभर बरोबरच असतो.</p>
 
@@ -500,7 +523,7 @@
       <div class="ornament-end">⛯⛯⛯</div>
     </article>
 
-    <!-- Share Button (पृष्ठाच्या शेवटी) -->
+    <!-- Bottom Share Button -->
     <div class="bottom-bar">
       <button class="share-btn" id="shareBtn">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
