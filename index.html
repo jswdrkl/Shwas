@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>‘श्वास’ एक ‘मितवा’ - मित्र, तत्वज्ञ आणि वाटाड्या</title>
   
-  <!-- IBM Plex Sans & IBM Plex Sans Devanagari Fonts -->
+  <!-- IBM Plex Sans Devanagari, IBM Plex Sans आणि Ubuntu Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Devanagari:wght@400;500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Devanagari:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;1,400&family=Ubuntu:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -52,11 +52,11 @@
     }
 
     body {
-      font-family: 'IBM Plex Sans Devanagari', 'IBM Plex Sans', sans-serif;
+      font-family: 'Ubuntu', 'IBM Plex Sans Devanagari', 'IBM Plex Sans', sans-serif;
       background-color: var(--bg-primary);
       color: var(--text-primary);
-      line-height: 1.85;
-      font-size: 1.125rem;
+      line-height: 1.9;
+      font-size: 1.25rem;
       transition: background-color 0.3s ease, color 0.3s ease;
       min-height: 100vh;
       display: flex;
@@ -81,13 +81,13 @@
     }
 
     @media (max-width: 640px) {
+      body {
+        font-size: 1.175rem;
+        padding: 12px 10px 36px;
+      }
       .container {
         padding: 24px 20px;
         border-radius: 14px;
-      }
-      body {
-        font-size: 1.05rem;
-        padding: 12px 10px 36px;
       }
     }
 
@@ -188,7 +188,7 @@
 
     .main-title {
       font-size: 1.85rem;
-      font-weight: 700;
+      font-weight: normal;
       color: var(--text-primary);
       letter-spacing: -0.01em;
       line-height: 1.35;
@@ -204,7 +204,7 @@
 
     .sub-title {
       font-size: 1.25rem;
-      font-weight: 500;
+      font-weight: normal;
       color: var(--text-muted);
       line-height: 1.4;
     }
@@ -218,15 +218,13 @@
       }
     }
 
-    /* Content Typography */
+    /* Content Body Typography */
     .content-body p {
       text-align: justify;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.35rem;
+      line-height: 1.9;
       color: var(--text-primary);
-    }
-
-    .content-body strong {
-      font-weight: 700;
+      font-weight: normal;
     }
 
     .centered-italics {
@@ -234,8 +232,8 @@
       font-style: italic;
       color: var(--text-primary);
       margin: 20px 0;
-      font-size: 1.15rem;
-      font-weight: 500;
+      font-size: inherit;
+      font-weight: normal;
     }
 
     .ornament {
@@ -273,9 +271,10 @@
       color: var(--text-muted);
       margin-top: 10px;
       letter-spacing: 0.05em;
+      font-weight: normal;
     }
 
-    /* Podcast Button / Card */
+    /* Podcast Section */
     .podcast-wrapper {
       margin: 28px 0 16px;
       display: flex;
@@ -286,7 +285,7 @@
 
     .podcast-intro {
       text-align: center;
-      font-weight: 500;
+      font-weight: normal;
       color: var(--text-muted);
     }
 
@@ -301,7 +300,7 @@
       padding: 12px 26px;
       text-decoration: none;
       color: var(--text-primary);
-      font-weight: 600;
+      font-weight: normal;
       font-size: 1.02rem;
       transition: all 0.25s ease;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
@@ -340,7 +339,7 @@
       padding: 13px 30px;
       font-family: inherit;
       font-size: 1.05rem;
-      font-weight: 600;
+      font-weight: normal;
       cursor: pointer;
       transition: all 0.2s ease;
       box-shadow: var(--shadow-sm);
@@ -429,12 +428,9 @@
           </filter>
         </defs>
 
-        <!-- Ambient Glow -->
         <circle class="anim-core" cx="130" cy="80" r="54" fill="url(#breathGlow)" filter="url(#softBlur)" />
 
-        <!-- Floating Energy Waves -->
         <g class="anim-float">
-          <!-- Flow curves representing rhythm of breath -->
           <path d="M 30,80 C 70,35 100,125 130,80 C 160,35 190,125 230,80" 
                 stroke="url(#breathWaveGrad)" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.85" />
           
@@ -442,23 +438,21 @@
                 stroke="#06b6d4" stroke-width="2" stroke-dasharray="6 6" stroke-linecap="round" fill="none" opacity="0.65" />
         </g>
 
-        <!-- Breathing Orbital Rings -->
         <circle class="anim-orbit" cx="130" cy="80" r="46" stroke="url(#breathWaveGrad)" stroke-width="1.8" stroke-dasharray="14 10" fill="none" opacity="0.75" />
         
-        <!-- Radiant Central Pearl / Prana -->
         <circle class="anim-core" cx="130" cy="80" r="11" fill="#f59e0b" />
         <circle cx="130" cy="80" r="6" fill="#ffffff" />
       </svg>
     </div>
 
-    <!-- Title with requested line separation and font hierarchy -->
+    <!-- Title Block -->
     <header class="title-block">
       <h1 class="main-title">‘श्वास’ एक ‘मितवा’</h1>
       <hr class="title-divider">
       <h2 class="sub-title">मित्र, तत्वज्ञ आणि वाटाड्या</h2>
     </header>
 
-    <!-- Essay Body -->
+    <!-- Essay Body (सर्व Bold फॉरमॅटिंग काढून टाकले आहे) -->
     <article class="content-body">
       <p>श्वास प्रत्येकाचा जन्मभराचा 'मैत्र' आहे. पहिल्या “ट्यां” पासून तो आयुष्यभर बरोबरच असतो.</p>
 
@@ -476,7 +470,7 @@
 
       <div class="ornament">⧫⧫⧫</div>
 
-      <p><strong>आहे!</strong> आपल्या प्रत्येकाला आयुष्याच्या अखेरपर्यंत साथ देईल असा एक अत्यंत विश्वासू ‘मैत्र’ आहे. खरेतर तो सतत आपल्या प्रत्येकाच्या बरोबरच आहे. आपल्याला जाणीव नसली तरी तो आपल्याशी निरपेक्ष मैत्री ठेऊन आहे, आणि जाणीवपूर्वक प्रयत्न केले तर तो आपला <strong>“मितवा” : मित्र, तत्वज्ञ आणि वाटाड्या</strong> होऊ शकतो. रक्ताचे नाते आहे त्याचे आणि आपले; आपल्या प्रत्येकाचे. तो म्हणजे आपल्या प्रत्येकाचा <strong>“श्वास”!!</strong></p>
+      <p>आहे! आपल्या प्रत्येकाला आयुष्याच्या अखेरपर्यंत साथ देईल असा एक अत्यंत विश्वासू ‘मैत्र’ आहे. खरेतर तो सतत आपल्या प्रत्येकाच्या बरोबरच आहे. आपल्याला जाणीव नसली तरी तो आपल्याशी निरपेक्ष मैत्री ठेऊन आहे, आणि जाणीवपूर्वक प्रयत्न केले तर तो आपला “मितवा” : मित्र, तत्वज्ञ आणि वाटाड्या होऊ शकतो. रक्ताचे नाते आहे त्याचे आणि आपले; आपल्या प्रत्येकाचे. तो म्हणजे आपल्या प्रत्येकाचा “श्वास”!!</p>
 
       <p>श्वास आपल्या प्रत्येकाचा जन्मभराचा स्नेही आहे. पहिल्या “ट्यां” पासून तो आयुष्यभर बरोबरच असतो. प्रत्येकाचा तो एक कायमस्वरूपी ‘समवयस्क’ दोस्त असतो. आत्मचिंतन करताना तो सहजपणे आपल्या विचारांशी समरस होऊ शकतो. व्यायाम करताना, श्रमाची कामे करताना, अगदी विचार करताना देखील आपोआप स्वतःची गती कमी-अधिक करून तो आपल्याला पुरेसा प्राणवायू मिळेल हे पहातो. पण जर आपण ‘अति’ करू लागलो तर ‘धाप’ लागते म्हणजेच ‘श्वासा’त आपल्याला शब्दावाचून ‘आता पुरे’ असे सांगण्याची धमक असते; आणि तसे झाले की या ‘जिगरी दोस्ता’समोर शरणागती पत्करून आपल्याला गप्प बसण्यावाचून, विश्रांती घेण्याशिवाय गत्यंतर नसते.</p>
 
@@ -490,7 +484,7 @@
 
       <div class="ornament-sub">⧫⧫</div>
 
-      <!-- Podcast Section (URL display removed) -->
+      <!-- Podcast Section -->
       <div class="podcast-wrapper">
         <div class="podcast-intro">या निबंधावरून एआयच्या मदतीने केलेला पॉडकास्ट ऐकण्यासाठी</div>
         <a href="https://u2l.ai/Shwas" target="_blank" rel="noopener noreferrer" class="podcast-btn" aria-label="पॉडकास्ट ऐका">
@@ -506,7 +500,7 @@
       <div class="ornament-end">⛯⛯⛯</div>
     </article>
 
-    <!-- Share Button -->
+    <!-- Share Button (पृष्ठाच्या शेवटी) -->
     <div class="bottom-bar">
       <button class="share-btn" id="shareBtn">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
