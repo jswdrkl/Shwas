@@ -65,7 +65,7 @@
       line-height: 1.9;
       font-size: 1.25rem;
       transition: background-color 0.3s ease, color 0.3s ease;
-      padding: 24px 16px 90px;
+      padding: 24px 16px 60px;
       word-break: keep-all;
       overflow-wrap: break-word;
       -webkit-font-smoothing: antialiased;
@@ -87,7 +87,7 @@
     @media (max-width: 640px) {
       body {
         font-size: 1.175rem;
-        padding: 14px 12px 120px; /* Extra space so Samsung Internet bottom bar never hides the share button */
+        padding: 14px 12px 48px;
       }
       .container {
         padding: 24px 16px 32px;
@@ -98,6 +98,8 @@
     .theme-toggle-wrap {
       display: flex;
       justify-content: flex-end;
+      align-items: center;
+      gap: 10px;
       margin-bottom: 12px;
     }
 
@@ -113,6 +115,7 @@
       justify-content: center;
       color: var(--text-primary);
       transition: all 0.2s ease;
+      flex-shrink: 0;
     }
 
     .theme-toggle-btn:hover {
@@ -123,6 +126,37 @@
     .theme-toggle-btn svg {
       width: 20px;
       height: 20px;
+    }
+
+    .share-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 9999px;
+      height: 42px;
+      padding: 0 16px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: normal;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .share-btn:hover {
+      background-color: var(--card-hover);
+      transform: scale(1.03);
+    }
+
+    .share-btn svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      fill: none;
     }
 
     /* Animated SVG Banner */
@@ -265,7 +299,7 @@
       letter-spacing: 0.5em;
       color: var(--accent-warm);
       font-size: 1.15rem;
-      margin: 24px 0 16px;
+      margin: 24px 0 8px;
       user-select: none;
     }
 
@@ -323,77 +357,6 @@
       fill: var(--accent-warm);
     }
 
-    /* Samsung Internet & Mobile Compatible Bottom Share Section */
-    .bottom-bar {
-      display: block;
-      width: 100%;
-      margin-top: 32px;
-      padding-top: 28px;
-      padding-bottom: 12px;
-      border-top: 2px solid var(--border-color);
-      text-align: center;
-      clear: both;
-    }
-
-    .share-btn {
-      -webkit-appearance: none;
-      appearance: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      background-color: #0284c7;
-      background-color: var(--btn-bg);
-      color: #ffffff;
-      color: var(--btn-text);
-      border: 2px solid var(--btn-border);
-      border-radius: 50px;
-      padding: 14px 36px;
-      font-family: inherit;
-      font-size: 1.15rem;
-      font-weight: normal;
-      line-height: 1.2;
-      cursor: pointer;
-      min-width: 220px;
-      min-height: 54px;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
-      transition: transform 0.2s ease, opacity 0.2s ease;
-      position: relative;
-      z-index: 10;
-      visibility: visible !important;
-      opacity: 1 !important;
-    }
-
-    .share-btn:hover {
-      transform: translateY(-2px);
-    }
-
-    .share-btn:active {
-      transform: translateY(1px);
-    }
-
-    .share-btn svg {
-      width: 22px;
-      height: 22px;
-      stroke: currentColor;
-      fill: none;
-      flex-shrink: 0;
-    }
-
-    @media (max-width: 640px) {
-      .bottom-bar {
-        margin-top: 28px;
-        padding-top: 24px;
-        padding-bottom: 16px;
-      }
-      .share-btn {
-        width: 90%;
-        max-width: 280px;
-        padding: 15px 24px;
-        font-size: 1.15rem;
-      }
-    }
-
     /* Toast Notification */
     .toast {
       position: fixed;
@@ -422,8 +385,19 @@
 
   <main class="container">
     
-    <!-- Theme Toggle -->
+    <!-- Top Bar: Share Button beside Theme Toggle -->
     <div class="theme-toggle-wrap">
+      <button type="button" class="share-btn" id="shareBtn" aria-label="शेअर करा">
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="18" cy="5" r="3"></circle>
+          <circle cx="6" cy="12" r="3"></circle>
+          <circle cx="18" cy="19" r="3"></circle>
+          <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+          <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+        </svg>
+        <span>शेअर करा</span>
+      </button>
+
       <button type="button" class="theme-toggle-btn" id="themeToggle" aria-label="थीम बदला">
         <svg id="moonIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
@@ -533,20 +507,6 @@
       <div class="ornament-end">⛯⛯⛯</div>
     </article>
 
-    <!-- Bottom Share Button -->
-    <div class="bottom-bar">
-      <button type="button" class="share-btn" id="shareBtn" aria-label="शेअर करा">
-        <svg viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="18" cy="5" r="3"></circle>
-          <circle cx="6" cy="12" r="3"></circle>
-          <circle cx="18" cy="19" r="3"></circle>
-          <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-          <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-        </svg>
-        <span>शेअर करा</span>
-      </button>
-    </div>
-
   </main>
 
   <div class="toast" id="toast">लिंक कॉपी केली गेली आहे!</div>
@@ -580,7 +540,7 @@
       }
     }
 
-    // Share functionality with fallback for Samsung Internet / local files
+    // Share functionality
     const shareBtn = document.getElementById('shareBtn');
     const toast = document.getElementById('toast');
 
