@@ -65,7 +65,7 @@
       line-height: 1.9;
       font-size: 1.25rem;
       transition: background-color 0.3s ease, color 0.3s ease;
-      padding: 24px 16px 120px; /* Large bottom padding so Samsung Internet bottom bar does not hide the share button */
+      padding: 24px 16px 120px; 
       word-break: keep-all;
       overflow-wrap: break-word;
       -webkit-font-smoothing: antialiased;
@@ -324,8 +324,8 @@
       fill: var(--accent-warm);
     }
 
-    /* Bottom Share Button tailored for Mobile & Samsung Internet */
-    .bottom-bar {
+    /* Renamed classes to bypass Adblockers (Samsung Internet / Brave) */
+    .mitwa-footer {
       display: block;
       width: 100%;
       margin-top: 36px;
@@ -336,7 +336,7 @@
       clear: both;
     }
 
-    .share-btn {
+    .mitwa-btn {
       -webkit-appearance: none;
       appearance: none;
       display: inline-flex;
@@ -365,15 +365,15 @@
       opacity: 1 !important;
     }
 
-    .share-btn:hover {
+    .mitwa-btn:hover {
       transform: translateY(-2px);
     }
 
-    .share-btn:active {
+    .mitwa-btn:active {
       transform: translateY(1px);
     }
 
-    .share-btn svg {
+    .mitwa-btn svg {
       width: 22px;
       height: 22px;
       stroke: currentColor;
@@ -382,12 +382,12 @@
     }
 
     @media (max-width: 640px) {
-      .bottom-bar {
+      .mitwa-footer {
         margin-top: 28px;
         padding-top: 24px;
         padding-bottom: 16px;
       }
-      .share-btn {
+      .mitwa-btn {
         width: 90%;
         max-width: 280px;
         padding: 15px 24px;
@@ -490,7 +490,7 @@
     <article class="content-body">
       <p>श्वास प्रत्येकाचा जन्मभराचा 'मैत्र' आहे. पहिल्या “ट्यां” पासून तो आयुष्यभर बरोबरच असतो.</p>
 
-      <p>प्रत्येक माणसाचे जगातील इतर व्यक्तीबरोबर एक नाते असते. काही नाती रक्ताची असतात; काही जवळची असतात तर काही दूरची. पण आपल्या या सगळ्या नातेसंबंधात खरे दृढ नाते असते ते म्हणजे ‘मैत्री’चे! दोन व्यक्तींमध्ये मैत्री का होते; एखाद्याची आणि आपली ‘वेव्हलेन्ग्थ’ का ‘फाइन ट्यून’ होते हे सांगणे शब्दातीत आहे. ती एक ‘अनुभूती’ stroke.</p>
+      <p>प्रत्येक माणसाचे जगातील इतर व्यक्तीबरोबर एक नाते असते. काही नाती रक्ताची असतात; काही जवळची असतात तर काही दूरची. पण आपल्या या सगळ्या नातेसंबंधात खरे दृढ नाते असते ते म्हणजे ‘मैत्री’चे! दोन व्यक्तींमध्ये मैत्री का होते; एखाद्याची आणि आपली ‘वेव्हलेन्ग्थ’ का ‘फाइन ट्यून’ होते हे सांगणे शब्दातीत आहे. ती एक ‘अनुभूती’ आहे.</p>
 
       <p>‘मैत्री’त महत्त्वाचा असतो विश्वास. एकमेकांविषयी मनातून वाटणारी ओढ. त्यात स्त्री-पुरुष भेद नसतो, वयाचा अडथळा नसतो. हे एक असे नाते आहे ज्यात आपण ज्या गोष्टी आपल्या घरातील लोकांना सांगू शकत नाही त्या एकमेकांशी सहजपणे शेअर करू शकतो. खुल्या दिलाने एकमेकांची उणी-दुणी काढू शकतो. मन मोकळे करू शकतो.</p>
 
@@ -534,9 +534,9 @@
       <div class="ornament-end">⛯⛯⛯</div>
     </article>
 
-    <!-- Bottom Share Button -->
-    <div class="bottom-bar">
-      <button type="button" class="share-btn" id="shareBtn" aria-label="शेअर करा">
+    <!-- Bottom Action Button (Renamed to bypass ad/tracker blockers) -->
+    <div class="mitwa-footer">
+      <button type="button" class="mitwa-btn" id="mitwaActionBtn" aria-label="शेअर करा">
         <svg viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="18" cy="5" r="3"></circle>
           <circle cx="6" cy="12" r="3"></circle>
@@ -582,10 +582,10 @@
     }
 
     // Share functionality
-    const shareBtn = document.getElementById('shareBtn');
+    const mitwaActionBtn = document.getElementById('mitwaActionBtn');
     const toast = document.getElementById('toast');
 
-    shareBtn.addEventListener('click', async () => {
+    mitwaActionBtn.addEventListener('click', async () => {
       const shareData = {
         title: "‘श्वास’ एक ‘मितवा’",
         text: "‘श्वास’ एक ‘मितवा’ - मित्र, तत्वज्ञ आणि वाटाड्या",
